@@ -1,14 +1,24 @@
-const Event = require('../models/Event');
-const instance = new Event('Title','Descr');
+const Events = require('../models/Events');
+// const {sequelize} = require('../db');
+const {Op, Sequelize} = require('sequelize');
 
 class EventService {
-    async getEventList(){
-        return await instance.getEventList();
+    async readActualEventsList(){
+        return await Events.findAll({
+            where: {
+                start_date: {
+                    [Op.gte]: Sequelize.fn('NOW')
+                }
+            }
+        });
     }
+    // async getEventList(){
+    //     return await instance.getEventList();
+    // }
 
-    async getOneEvent(eventID){
-        return await instance.getOneEvent(eventID);
-    }
+    // async getOneEvent(eventID){
+    //     return await instance.getOneEvent(eventID);
+    // }
 }
 
 module.exports = EventService;
