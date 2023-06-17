@@ -27,9 +27,9 @@ app.use('/events', eventsRouter);
 app.use('/test', testRouter);
 
 const {initModels} = require('./models/init');
-app.listen(3001, async ()=> {
+;(async ()=> {
   await initModels()
-});
+})();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

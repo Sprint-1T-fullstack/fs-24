@@ -1,10 +1,13 @@
 const EventService = require('../services/EventService');
 const instEventService = new EventService();
 
-async function readActualEventsList(req, res){
-    const items = await instEventService.readActualEventsList();
-    return res.json(items)
+class EventController {
+    async readActualEventsList(req, res){
+        const items = await instEventService.readActualEventsList();
+        return res.json(items);
+    }
 }
+
 // async function getAllEvents(req, res){
 //     const items = await instance.getEventList();
 //     return res.json(items);
@@ -15,4 +18,4 @@ async function readActualEventsList(req, res){
 //     return res.json(item);
 // }
 
-module.exports = {readActualEventsList};
+module.exports = EventController;
