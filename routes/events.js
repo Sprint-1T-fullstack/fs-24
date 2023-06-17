@@ -6,8 +6,12 @@ const instEventController = new EventController();
 
 const just_log_it = require('../middleware/just_log_it');
 
-/* GET events listing. */
+router.post('/create', just_log_it, instEventController.createEvent);
+
 router.get('/', just_log_it, instEventController.readActualEventsList);
-// router.get('/event/:eventID', just_log_it, getOneEvent);
+
+router.patch('/update/:eventID', just_log_it, instEventController.updateEventByID);
+
+router.delete('/delete/:eventID', just_log_it, instEventController.deleteEventByID)
 
 module.exports = router;

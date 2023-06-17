@@ -6,8 +6,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var eventsRouter = require('./routes/events');
-var testRouter = require('./routes/test');
 
 var app = express();
 
@@ -23,7 +21,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+var eventsRouter = require('./routes/events');
 app.use('/events', eventsRouter);
+
+var eventTypeRouter = require('./routes/eventType');
+app.use('/eventtype', eventTypeRouter);
+
+var testRouter = require('./routes/test');
 app.use('/test', testRouter);
 
 const {initModels} = require('./models/init');
